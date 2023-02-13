@@ -1,0 +1,30 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.wrapper">
+            <container name="custom-content" as="custom-content" label="Page Custom Content" htmlTag="div" htmlClass="top-bar-content"  before="-">
+                <block ifconfig="carriers/freeshipping/active" name="secure.logos" template="Magento_Theme::topbar.phtml">
+                    <arguments>
+                        <argument name="title" xsi:type="string">Free shipping for all orders.</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/theme_logo.svg</argument>
+                <argument name="logo_alt" xsi:type="string">Scandiweb logo</argument>
+                <argument name="logo_img_width" xsi:type="number">80</argument>
+                <argument name="logo_img_height" xsi:type="number">80</argument>
+            </arguments>
+        </referenceBlock>
+
+        <move element="form.subscribe" destination="page.wrapper" as="new-newsletter" before="footer-container"/>
+
+        <referenceContainer name="footer">
+            <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" template="Magento_Theme::subscribe.phtml"/>
+        </referenceContainer>
+
+    </body>
+</page>
